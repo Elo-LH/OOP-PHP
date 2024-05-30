@@ -27,7 +27,17 @@ class UserManager
     }
     public function loadUsers(): void
     {
-        return;
+        $query = $this->db->prepare('SELECT * FROM users ');
+        $parameters = [];
+        $query->execute($parameters);
+        $users = $query->fetchAll(PDO::FETCH_ASSOC);
+        $loadedUsers = [];
+        //enter fetched users from DB into instances array
+        foreach ($users as $user) {
+            new User($user['first_name'], $user['last_name'], $user['email']);
+            array_push($loadedUsers, $user);
+        };
+        $users->setUsers($loadedUsers);
     }
     public function saveUser(): void
     {
