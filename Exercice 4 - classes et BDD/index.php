@@ -8,11 +8,13 @@ require 'connexion.php';
 $query = $db->prepare('SELECT * FROM users ');
 $parameters = [];
 $query->execute($parameters);
-$user = $query->fetch(PDO::FETCH_ASSOC);
+$users = $query->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($user);
+var_dump($users);
 
+foreach ($users as $user) {
+    $name = new User($user['first_name'], $user['last_name'], $user['email']);
+}
 
-$name = new User($user['first_name'], $user['last_name'], $user['email']);
 
 echo $name->getFirstName();

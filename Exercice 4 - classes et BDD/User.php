@@ -2,6 +2,7 @@
 
 class User
 {
+    private array $users;
     private ?int $id;
     public function __construct(
         private string $firstName,
