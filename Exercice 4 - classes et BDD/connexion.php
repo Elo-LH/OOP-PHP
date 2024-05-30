@@ -6,7 +6,7 @@ $dbname = "eloisele_hellard_pooj1";
 $connexionString = "mysql:host=$host;port=$port;dbname=$dbname";
 
 $user = "root";
-$password = "root";
+$password = "";
 
 $db = new PDO(
     $connexionString,
