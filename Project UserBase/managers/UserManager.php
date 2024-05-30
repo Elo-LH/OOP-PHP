@@ -37,7 +37,7 @@ class UserManager
             new User($user['username'], $user['email'], $user['password'], $user['role']);
             array_push($loadedUsers, $user);
         };
-        var_dump($loadedUsers);
+
         $this->setUsers($loadedUsers);
         return $this->users;
     }
@@ -47,6 +47,14 @@ class UserManager
     }
     public function deleteUsers(): void
     {
-        return;
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $query = $this->db->prepare('DELETE FROM users WHERE id = :id');
+            $parameters = [
+                'id' => $id,
+            ];
+            $query->execute($parameters);
+            $isUserDeleted = $query->fetch(PDO::FETCH_ASSOC);
+        }
     }
 }

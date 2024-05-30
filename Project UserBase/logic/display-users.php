@@ -1,7 +1,5 @@
 <?php
 
-require "../managers/UserManager.php";
-
+require "managers/UserManager.php";
 $instance = new UserManager();
-$test = $instance->loadUsers();
-var_dump($test);
+$users = $instance->loadUsers();
