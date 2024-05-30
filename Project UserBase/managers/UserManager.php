@@ -1,7 +1,5 @@
 <?php
 
-require "../models/User.php";
-
 class UserManager
 {
 
@@ -41,9 +39,17 @@ class UserManager
         $this->setUsers($loadedUsers);
         return $this->users;
     }
-    public function saveUser(): void
+    public function saveUser(string $username, string $email, string $password, string $role): void
     {
-        return;
+        $query = $this->db->prepare('INSERT INTO users(username, email, password, role) VALUES(:username, :email, :password, :role)');
+        $parameters = [
+            'username' => $username,
+            'email' => $email,
+            'password' => $password,
+            'role' => $role
+        ];
+        $query->execute($parameters);
+        $userSaved = $query->fetch(PDO::FETCH_ASSOC);
     }
     public function deleteUsers(): void
     {
