@@ -25,7 +25,7 @@ class UserManager
     {
         $this->users = $users;
     }
-    public function loadUsers(): void
+    public function loadUsers(): array
     {
         $query = $this->db->prepare('SELECT * FROM users ');
         $parameters = [];
@@ -34,10 +34,12 @@ class UserManager
         $loadedUsers = [];
         //enter fetched users from DB into instances array
         foreach ($users as $user) {
-            new User($user['first_name'], $user['last_name'], $user['email']);
+            new User($user['username'], $user['email'], $user['password'], $user['role']);
             array_push($loadedUsers, $user);
         };
-        $users->setUsers($loadedUsers);
+        var_dump($loadedUsers);
+        $this->setUsers($loadedUsers);
+        return $this->users;
     }
     public function saveUser(): void
     {
