@@ -65,4 +65,24 @@ class Post extends User
     {
         $this->createdAt = $createdAt;
     }
+
+    public function getCategories(): array
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(array $categories): void
+    {
+        $this->categories = $categories;
+    }
+
+    public function addCategory(Category $category): void
+    {
+        array_push($categories, $category);
+    }
+    public function removeCategory(Category $category): void
+    {
+        $indexToRemove = array_search($category, $this->categories);
+        unset($categories[$indexToRemove]);
+    }
 }

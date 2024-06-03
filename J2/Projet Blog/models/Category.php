@@ -5,6 +5,7 @@ class Category
     private int $id = 0;
     private string $title;
     private string $description;
+    private array $posts = [];
 
     public function __construct($title, $description)
     {
@@ -35,5 +36,34 @@ class Category
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * Get the value of posts
+     */
+    public function getPosts(): array
+    {
+        return $this->posts;
+    }
+
+    /**
+     * Set the value of posts
+     */
+    public function setPosts(array $posts): void
+    {
+        $this->posts = $posts;
+    }
+
+    public function addPost(Post $post): void
+    {
+        $isIndexFound = array_search($post, $this->posts);
+        if (!$isIndexFound) {
+            array_push($this->posts, $post);
+        }
+    }
+    public function removePost(Post $post): void
+    {
+        $indexToRemove = array_search($post, $this->posts);
+        unset($this->posts, $indexToRemove);
     }
 }
