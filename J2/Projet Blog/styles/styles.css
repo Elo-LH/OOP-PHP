@@ -1,0 +1,7 @@
+.page-header-nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+.page-header-nav a {
+  display: block;
+}

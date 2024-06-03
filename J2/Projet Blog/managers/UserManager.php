@@ -48,11 +48,11 @@ class UserManager extends AbstractManager
     {
         $query = $this->db->prepare('INSERT INTO users(username, email, password, role, created_at) VALUES(:username, :email, :password, :role, :created_at)');
         $parameters = [
-            'username' => $user['username'],
-            'email' => $user['email'],
-            'password' => $user['password'],
-            'role' => $user['role'],
-            'created_at' => $user['createdAt'],
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
+            'role' => $user->getRole(),
+            'created_at' => $user->getCreatedAt(),
         ];
         $query->execute($parameters);
         $isCreated = $query->fetch(PDO::FETCH_ASSOC);

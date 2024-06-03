@@ -104,18 +104,18 @@ class PostManager extends AbstractManager
 
     public function delete(int $id): void
     {
-        //delete post from posts
-        $query = $this->db->prepare('DELETE FROMposts WHERE id = :id');
-        $parameters = [
-            'id' => $id,
-        ];
-        $query->execute($parameters);
-        $isDeleted = $query->fetch(PDO::FETCH_ASSOC);
-
         //delete all links from post in posts_categories
         $query = $this->db->prepare("DELETE FROM posts_categories WHERE post_id = :post_id ");
         $parameters = [
             'post_id' => $id,
+        ];
+        $query->execute($parameters);
+        $query->fetch(PDO::FETCH_ASSOC);
+
+        //delete post from posts
+        $query = $this->db->prepare('DELETE FROM posts WHERE id = :id');
+        $parameters = [
+            'id' => $id,
         ];
         $query->execute($parameters);
         $query->fetch(PDO::FETCH_ASSOC);

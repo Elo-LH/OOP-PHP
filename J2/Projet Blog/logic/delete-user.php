@@ -9,4 +9,4 @@ $id  = $_GET['id'];
 $instance = new UserManager();
 $delete = $instance->delete($id);
 
-header('Location: ../index.php');
+header('Location: ../index.php?route=users');
