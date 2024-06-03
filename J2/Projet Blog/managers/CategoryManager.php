@@ -1,8 +1,8 @@
 <?php
 
-require "Category.php";
 
-class UserManager extends AbstractManager
+
+class CategoryManager extends AbstractManager
 {
 
     public function __construct()
@@ -19,7 +19,7 @@ class UserManager extends AbstractManager
         $loadedCategories = [];
         //enter fetched users from DB into instances array
         foreach ($categories as $category) {
-            $category = new Category($category['title'], $category['description']);
+            new Category($category['title'], $category['description']);
             array_push($loadedCategories, $category);
         };
         return $loadedCategories;

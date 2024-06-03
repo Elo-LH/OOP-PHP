@@ -2,15 +2,15 @@
 
 class User
 {
-    private int $id = 0;
-    private string $username;
-    private string $email;
-    private string $password;
-    private string $role;
-    private string $createdAt;
+    private ?int $id;
 
-    public function __construct($username, $email, $password, $role, $createdAt)
-    {
+    public function __construct(
+        private string $username,
+        private string $email,
+        private string $password,
+        private string $role,
+        private string $createdAt
+    ) {
     }
     public function getId(): int
     {

@@ -4,7 +4,7 @@ class User
 {
     private ?int $id;
     public function __construct(
-        private string $userame,
+        private string $username,
         private string $email,
         private string $password,
         private string $role = "USER",

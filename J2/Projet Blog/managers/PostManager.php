@@ -1,8 +1,7 @@
 <?php
 
-require "Post.php";
 
-class UserManager extends AbstractManager
+class PostManager extends AbstractManager
 {
 
     public function __construct()
@@ -19,7 +18,7 @@ class UserManager extends AbstractManager
         $loadedPosts = [];
         //enter fetched users from DB into instances array
         foreach ($posts as $post) {
-            $post = new Post($post['title'], $post['excerpt'], $post['content'], $post['author'], $post['created_at']);
+            new Post($post['title'], $post['excerpt'], $post['content'], $post['author'], $post['created_at']);
             array_push($loadedPosts, $post);
         };
         return $loadedPosts;

@@ -1,0 +1,82 @@
+<table class="col my-5 table table-striped">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Titre
+            </th>
+            <th>
+                Extrait
+            </th>
+            <th>
+                Contenu
+            </th>
+            <th>
+                Auteur
+            </th>
+            <th>
+                Date de création
+            </th>
+            <th>
+                Supprimer
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $postManager = new PostManager;
+        $userManager = new UserManager;
+        $posts = $postManager->findAll();
+        foreach ($posts as $post) {
+        ?>
+            <tr>
+                <td> <?= $post['id'] ?> </td>
+                <td> <?= $post['title'] ?> </td>
+                <td> <?= $post['excerpt'] ?> </td>
+                <td> <?= $post['content'] ?> </td>
+                <td> <?php
+
+                        $author = $userManager->findOne($post['author']);
+                        echo $author->getUsername();
+
+                        ?> </td>
+                <td> <?= $post['created_at'] ?> </td>
+
+                <td>
+                    <a href="logic/delete-post.php?id=<?= $post['id'] ?>" class="btn btn-danger">
+                        <scan class="bi-trash-fill"></scan>
+                    </a>
+                </td>
+            </tr>
+        <?php
+        };
+        ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Nom d'utilisateur
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Mot de passe
+            </th>
+            <th>
+                Rôle
+            </th>
+            <th>
+                Date de création
+            </th>
+            <th>
+                Supprimer
+            </th>
+        </tr>
+    </tfoot>
+</table>

@@ -1,6 +1,5 @@
 <?php
 
-require "User.php";
 
 class UserManager extends AbstractManager
 {
@@ -38,7 +37,9 @@ class UserManager extends AbstractManager
         if ($user === '') {
             return null;
         } else {
+
             $user = new User($user['username'], $user['email'], $user['password'], $user['role'], $user['created_at']);
+
             return $user;
         }
     }
@@ -74,11 +75,21 @@ class UserManager extends AbstractManager
 
     public function delete(int $id): void
     {
+        $query = $this->db->prepare('SET FOREIGN_KEY_CHECKS=0;');
+        $parameters = [];
+        $query->execute($parameters);
+        $query->fetch(PDO::FETCH_ASSOC);
+
         $query = $this->db->prepare('DELETE FROM users WHERE id = :id');
         $parameters = [
             'id' => $id,
         ];
         $query->execute($parameters);
-        $isDeleted = $query->fetch(PDO::FETCH_ASSOC);
+        $query->fetch(PDO::FETCH_ASSOC);
+
+        $query = $this->db->prepare('SET FOREIGN_KEY_CHECKS=1;');
+        $parameters = [];
+        $query->execute($parameters);
+        $query->fetch(PDO::FETCH_ASSOC);
     }
 }

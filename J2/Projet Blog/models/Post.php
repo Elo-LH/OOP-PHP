@@ -1,6 +1,6 @@
 <?php
 
-class Post extends User
+class Post
 {
     private int $id = 0;
     private string $title;

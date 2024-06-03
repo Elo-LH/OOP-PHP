@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Base utilisateurs POO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="container-fluid">
+    <main class="p-5">
+        <h1 class="text-center">Blog</h1>
+        <section class="row">
+            <?php
+
+            require "header.phtml";
+            if ($route === null || preg_match("/home/", $route)) {
+                require "home.phtml";
+            } else if (preg_match("/posts/", $route)) {
+                require "posts.phtml";
+            } else if (preg_match("/users/", $route)) {
+                require "users.phtml";
+            } else if (preg_match("/categories/", $route)) {
+                require "categories.phtml";
+            }
+            ?>
+        </section>
+    </main>
+</body>
+
+</html>
